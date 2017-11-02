@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+     
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="false" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+    </settings>
+    
+    <typeAliases>
+    	<typeAlias alias="menuVO" type="com.jayg.web.menu.vo.MenuVO"></typeAlias>
+    	<typeAlias alias="boardVO" type="com.jayg.web.board.vo.BoardVO"></typeAlias>
+	</typeAliases>
+    
+</configuration>

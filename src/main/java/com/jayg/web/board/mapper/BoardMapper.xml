@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="boardMapper">
+
+    <resultMap type="boardVO" id="BoardLsit">
+        <result property="seq" column="SEQ" />
+        <result property="title" column="TITLE" />
+        <result property="author" column="AUTHOR" />
+    </resultMap>
+    <resultMap type="boardVO" id="BoardResult">
+        <result property="seq" column="SEQ" />
+        <result property="title" column="TITLE" />
+        <result property="author" column="AUTHOR" />
+        <result property="content" column="CONTENT" />
+    </resultMap>
+	
+    <select id="selectBoard" parameterType="int" resultMap="BoardResult">
+        SELECT * FROM BOARD WHERE SEQ = #{SEQ}
+    </select>
+    
+    <select id="selectBoardList" resultMap="BoardLsit">
+		SELECT * FROM BOARD ORDER BY SEQ DESC
+ 	</select>
+
+    <insert id="insertBoard" useGeneratedKeys="true" keyProperty="seq" parameterType="com.jayg.web.board.vo.BoardVO">
+        INSERT INTO BOARD ( seq, title, author, content) VALUES (#{seq}, #{title}, #{author}, #{content})
+    </insert>
+
+    <update id="updateBoard" parameterType="com.jayg.web.board.vo.BoardVO">
+        UPDATE BOARD SET TITLE=#{title}, AUTHOR=#{author}, CONTENT=#{content} WHERE SEQ=#{seq}
+    </update>
+</mapper>
