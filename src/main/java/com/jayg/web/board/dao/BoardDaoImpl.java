@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jayg.web.board.vo.BoardVO;
+import com.jayg.web.board.vo.PageVO;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -14,7 +15,7 @@ public class BoardDaoImpl implements BoardDao {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getListAll() {
 		return sqlSession.selectList("boardMapper.selectBoardList");
 	}
 
@@ -36,5 +37,11 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public int getListCount() {
 		return (int) sqlSession.selectOne("boardMapper.selectBoardCount");
+	}
+
+	@Override
+	public List<BoardVO> getList(PageVO vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("boardMapper.selectBoardListPage", vo);
 	}
 }

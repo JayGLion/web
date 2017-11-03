@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.jayg.web.board.dao.BoardDao;
 import com.jayg.web.board.vo.BoardVO;
+import com.jayg.web.board.vo.PageVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -14,8 +15,8 @@ public class BoardServiceImpl implements BoardService {
 	BoardDao boardDao;
 	
 	@Override
-	public List<BoardVO> getList() {
-		return boardDao.getList();
+	public List<BoardVO> getListAll() {
+		return boardDao.getListAll();
 	}
 
 	@Override
@@ -36,5 +37,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int getListCount() {
 		return (int) boardDao.getListCount();
+	}
+
+	@Override
+	public List<BoardVO> getList(PageVO vo) {
+		return boardDao.getList(vo);
 	}
 }

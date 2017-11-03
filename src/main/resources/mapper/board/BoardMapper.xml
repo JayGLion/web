@@ -25,7 +25,12 @@
 		SELECT * FROM BOARD ORDER BY SEQ DESC
  	</select>
  	
- 	<select id="selectBoarCount" resultType="Integer">
+ 	<select id="selectBoardListPage" resultType="com.jayg.web.board.vo.BoardVO" parameterType="com.jayg.web.board.vo.PageVO">
+		SELECT * FROM BOARD 
+		LIMIT #{startRow}, #{lastRow}
+ 	</select>
+ 	
+ 	<select id="selectBoardCount" resultType="Integer">
 		SELECT COUNT(*) FROM BOARD;
  	</select>
 

@@ -26,7 +26,7 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 
-	@RequestMapping(method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	@RequestMapping(value = "/list",method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public PageVO selectRowList(
 			@RequestParam(value = "page", required=false) Integer page, 
 			@RequestParam(value = "rows", required=false) Integer rows,
@@ -40,20 +40,9 @@ public class BoardController {
 		pageVO.setCurrentPageNo(page);
 		pageVO.setRowCount(rows);
 		pageVO.setSort(sort);
-//		
-//		if(page != null) {
-//			pageVO.setCurrentPageNo(page);
-//			if(rows != null) {
-//				pageVO.setRowCount(rows);
-//			}
-//			if(sort != null) {
-//				pageVO.setSort(sort);
-//			}
-//			pageVO.setTotalCount(99);
-//		} 
-//		
+
 		pageVO.setTotalCount(boardService.getListCount());
-		pageVO.setList(boardService.getList());
+		pageVO.setList(boardService.getList(pageVO));
 		
 		return pageVO;
 	}

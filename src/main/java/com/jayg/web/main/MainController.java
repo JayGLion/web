@@ -1,7 +1,5 @@
 package com.jayg.web.main;
 
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +24,4 @@ public class MainController {
 		return forward;
 	}
 	
-	@MessageMapping("/howfast") 
-	@SendTo("/topic/yourspeedis") 
-	public String showSpeed() throws Exception { 
-		return "hello"; 
-	}
 }

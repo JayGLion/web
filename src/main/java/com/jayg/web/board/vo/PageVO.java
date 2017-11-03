@@ -10,7 +10,8 @@ public class PageVO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1356294928190089044L;
 	
-	private int firstRow;   
+	private int firstRow;
+	private int startRow;  
     private int lastRow;    
     private int sort = 0; // 0 : asc, 1 : desc
 	private int rowCount; 
@@ -32,6 +33,14 @@ public class PageVO implements Serializable {
 		this.firstRow = firstRow;
 	}
 
+	public int getStartRow() {
+		return startRow;
+	}
+
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+	
 	public int getLastRow() {
 		return lastRow;
 	}
@@ -174,12 +183,15 @@ public class PageVO implements Serializable {
     		int descFirst = totalCount - (currentPageNo-1) * rowCount;
     		int descLast = (totalCount - currentPageNo * rowCount) + 1;
     		setFirstRow(descFirst);
+    		setStartRow(descFirst+1);
     		setLastRow(descLast < 1 ? 1 : descLast);
     	} else {
     		int ascFirst = (currentPageNo - 1) * rowCount + 1;
     		int asclast = currentPageNo * rowCount;
     		setLastRow(asclast > totalCount ? totalCount : asclast);
     		setFirstRow(ascFirst);
+    		setStartRow(ascFirst-1);
     	}
     }
+
 }
